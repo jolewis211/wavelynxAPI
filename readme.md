@@ -3,9 +3,9 @@
 #### Install dependencies via your terminal with "```pipenv sync```"
 
 ####  To build the expected database, inside of your postgreSQL terminal run:
-```CREATE USER wl_user WITH PASSWORD password```
+```CREATE USER wl_user WITH PASSWORD password;```
 
-```CREATE DATABASE tokendb WITH OWNER wl_user```
+```CREATE DATABASE tokendb WITH OWNER wl_user;```
 
 #### At the root level create a ```.flaskenv``` copy in the following information 
 ```FLASK_APP=app/app.py```

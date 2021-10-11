@@ -3,7 +3,7 @@
 #### Install dependencies via your terminal with "```pipenv sync```"
 
 ####  To build the expected database, inside of your postgreSQL terminal run:
-```CREATE USER wl_user WITH PASSWORD password;```
+```CREATE USER wl_user WITH PASSWORD 'password';```
 
 ```CREATE DATABASE tokendb WITH OWNER wl_user;```
 

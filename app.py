@@ -20,7 +20,10 @@ def verify_token():
     """
     Verify that the provided token has been previously generated.
     """
-    pass
+    return (
+        {"status": "not implemented"},
+        status.HTTP_400_BAD_REQUEST,
+    )
 
 
 @app.route(
@@ -34,3 +37,7 @@ def catch_all(path):
         {"status": "error"},
         status.HTTP_404_NOT_FOUND,
     )
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080, debug=True)

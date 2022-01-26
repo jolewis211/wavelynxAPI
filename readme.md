@@ -1,35 +1,18 @@
-# Instructions for use
+# WaveLynx Backend Coding "Challenge"
 
-#### Install dependencies via your terminal with "```pipenv sync```"
+## Installation
 
-####  To build the expected database, inside of your postgreSQL terminal run:
-```CREATE USER wl_user WITH PASSWORD 'password';```
+You Must have Python 3 installed on your system. After cloning this repo,
+navigate to the base directory and install dependencies with:
 
-```CREATE DATABASE tokendb WITH OWNER wl_user;```
+```
+pip install -r requirements.txt
+```
 
-#### At the root level create a ```.flaskenv``` copy in the following information 
-```FLASK_APP=app/app.py```
+## Running
 
-```FLASK_ENV=development```
+Simply run the application using:
 
-```FLASK_RUN_PORT=8080```
-
-```SECRET_KEY=rhW0ze@@BX#%```
-
-```DATABASE_URL=postgresql://wl_user:password@localhost/tokendb```
-
-#### In the terminal at the root level run
-```flask db init```
-
-```flask db migrate```
-
-```flask db upgrade```
-
-
-#### Now that your dependencies are installed and the expected database is built start the application with ```flask run```
-
-
-#### This application can handle GET requests at ```localhost:8080/token```.  It will automatically generate and store valid tokens in the database.
-
-
-#### This application can also handle POST requests at ```localhost:8080/verify```.  Requests must be valid JSON request with ```Content-Type: application/JSON``` headers.  This API expects this format: ```{"token": "1'=Y..."}```
+```
+python3 app.py
+```

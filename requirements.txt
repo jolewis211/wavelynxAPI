@@ -1,4 +1,2 @@
-click
-flask-migrate
-flask-sqlalchemy
 flask
+flask_api

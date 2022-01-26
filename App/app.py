@@ -2,6 +2,7 @@ import click
 from flask.cli import with_appcontext
 from flask import Flask
 from flask_migrate import Migrate
+
 from routes import app_router  # noqa
 from config import Config
 from models import db
@@ -13,7 +14,7 @@ db.init_app(app)
 Migrate(app, db)
 
 
-@click.command(name='create')
+@click.command(name="create")
 @with_appcontext
 def create():
     db.create_all()

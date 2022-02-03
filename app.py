@@ -41,15 +41,22 @@ def get_token():
     return {"status": "success", "token": new_token}
 
 
-@app.route("/verify", methods=["POST"])
-def verify_token():
+@app.route("/verify/<string:token>", methods=["POST"])
+def verify_token(token):
     """
     Verify that the provided token has been previously generated.
     """
-    return (
-        {"status": "not implemented"},
-        status.HTTP_400_BAD_REQUEST,
-    )
+    results = ApiKey.query.filter_by(key=token).all()
+    if results:
+        return (
+            {"message": f"{token} is a registered token"},
+            status.HTTP_202_ACCEPTED
+        )
+    else:
+        return (
+            {"message": f"{token} is not a registered token"},
+            status.HTTP_401_UNAUTHORIZED,
+        )
 
 
 @app.route(

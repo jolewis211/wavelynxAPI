@@ -49,12 +49,14 @@ def verify_token(token):
     results = ApiKey.query.filter_by(key=token).all()
     if results:
         return (
-            {"message": f"{token} is a registered token"},
+            {"status": "success",
+            "message": f"{token} is a registered token"},
             status.HTTP_202_ACCEPTED
         )
     else:
         return (
-            {"message": f"{token} is not a registered token"},
+            {"status": "success",
+            "message": f"{token} is not a registered token"},
             status.HTTP_401_UNAUTHORIZED,
         )
 
@@ -66,8 +68,16 @@ def catch_all(path):
     """
     Return errors for all invalid paths or request methods.
     """
+    if path == 'verify/':
+        return (
+        {"status": "error", 
+        "message": "no token provided in verify endpoint"},
+        status.HTTP_404_NOT_FOUND,            
+        )
+
     return (
-        {"status": "error"},
+        {"status": "error",
+        "message": "error"},
         status.HTTP_404_NOT_FOUND,
     )
 

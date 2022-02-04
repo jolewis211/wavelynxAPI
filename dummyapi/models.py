@@ -1,4 +1,4 @@
-from app import db
+from dummyapi import db
 
 class ApiToken(db.Model):
     id_ = db.Column(db.Integer, autoincrement=True, primary_key=True)

@@ -1,7 +1,5 @@
 import string
 import random
-import json
-
 
 def generate_token() -> str:
     """

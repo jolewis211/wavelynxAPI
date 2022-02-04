@@ -1,7 +1,7 @@
 from flask_api import status
 import dummyapi.token as token
 from dummyapi import app, db
-from dummyapi.models import ApiKey
+from dummyapi.models import ApiToken
 
 # I'd like to keep deployment as-is 
 # with this decorator, users do not need to build the db from CLI
@@ -16,13 +16,16 @@ def get_token():
     Generate and store a new token.
     """
     new_token: str = token.generate_token()
-    api_obj = ApiKey(new_token)
+    api_obj = ApiToken(new_token)
     db.session.add(api_obj)
     db.session.commit()
 
-    return {"status": "success", 
+    return (
+        {"status": "success", 
         "message": "new token generated",
-        "token": new_token}
+        "token": new_token},
+        status.HTTP_201_CREATED
+    )
 
 
 @app.route("/verify/<string:token>", methods=["POST"])
@@ -30,7 +33,7 @@ def verify_token(token):
     """
     Verify that the provided token has been previously generated.
     """
-    results = ApiKey.query.filter_by(key=token).all()
+    results = ApiToken.query.filter_by(token=token).all()
     if results:
         return (
             {"status": "success",

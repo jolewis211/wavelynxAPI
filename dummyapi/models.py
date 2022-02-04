@@ -1,10 +1,11 @@
 from app import db
 
-class ApiKey(db.Model):
-    key = db.Column(db.String(255), primary_key=True)
+class ApiToken(db.Model):
+    id_ = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    token = db.Column(db.String(255))
 
     def __init__(self, key):
-        self.key = key
+        self.token = key
 
     def json(self):
-        return {'key': self.key}
+        return {'key': self.token}

@@ -42,7 +42,7 @@ def verify_token(token):
         )
     else:
         return (
-            {"status": "success",
+            {"status": "unathorized",
             "message": f"{token} is not a registered token"},
             status.HTTP_401_UNAUTHORIZED,
         )
